@@ -4,7 +4,12 @@ function getAge(){
     fetch(url)
     .then(res => res.json())
     .then((out) => {
-        document.getElementById('age').innerText = out.age
+        if (out.age != null){
+            document.getElementById('age').innerText = out.age
+        }
+        else{
+           document.getElementById('age').innerText = 'No data for name'
+        }
     })
     .catch(err => { throw err});
 }
