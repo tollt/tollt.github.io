@@ -5,7 +5,7 @@ function getAge(){
     .then(res => res.json())
     .then((out) => {
         if (out.age != null){
-            document.getElementById('age').innerText = out.age;
+            document.getElementById('age').innerText = out.age + ' is the average age of people named '+document.getElementById('t').value.replace(/[^A-Za-z]/g,'');
         }else{
             document.getElementById('age').innerText = 'No data for name';
         }
