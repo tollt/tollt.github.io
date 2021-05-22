@@ -5,10 +5,9 @@ function getAge(){
     .then(res => res.json())
     .then((out) => {
         if (out.age != null){
-            document.getElementById('age').innerText = out.age
-        }
-        else{
-           document.getElementById('age').innerText = 'No data for name'
+            document.getElementById('age').innerText = out.age;
+        }else{
+           document.getElementById('age').innerText = 'No data for name';
         }
     })
     .catch(err => { throw err});
