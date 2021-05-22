@@ -7,7 +7,12 @@ function getAge(){
         if (out.age != null){
             document.getElementById('age').innerText = out.age;
         }else{
-           document.getElementById('age').innerText = 'No data for name';
+            document.getElementById('age').innerText = 'No data for name';
+        }
+        if (out.count != null){
+            document.getElementById('count').innerText = out.count + ' people named '+document.getElementById('t').value.replace(/[^A-Za-z]/g,'');
+        }else{
+            document.getElementById('count'),innerText = 'No data for name'
         }
     })
     .catch(err => { throw err});
