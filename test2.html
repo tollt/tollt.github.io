@@ -7,15 +7,17 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $("#txtInput").on('keyup', function (event) {
+       if (event.keyCode === 13) {
+            document.getElementById("p") = document.getElementById("txtInput").innerTex
+            document.getElementById("txtInput").innerText = ""
+       }
+    });
+ </script>
 </head>
 <body>
 <input type="text" id="txtInput">
-<script>
-   $("#txtInput").on('keyup', function (event) {
-      if (event.keyCode === 13) {
-         console.log("Enter key pressed!!!!!");
-      }
-   });
-</script>
+<p id="p"></p>
 </body>
 </html>
