@@ -1,4 +1,4 @@
-$(document.getElementById("enterbox")).on("keypress", "input", function(e){
+$(document).on("keypress", "input", function(e){
     if(e.which == 13){
         var inputVal = $(this).val();
         document.getElementById("wordentered.strong").innerText = inputVal
