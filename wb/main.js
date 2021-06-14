@@ -28,6 +28,7 @@ $(txt).on("keydown", function (e) {
         for (var i = 0; i < dic.length; i++) {
             if (dic[i] == txt){
                 p.hidden = true
+                p.innerText = ""
                 span.innerText = "✓"
                 span.style.fontSize = 'xxx-large'
                 setTimeout(() => {
