@@ -28,9 +28,9 @@ $(txt).on("keydown", function (e) {
         for (var i = 0; i < dic.length; i++) {
             if (dic[i] == txt){
                 p.hidden = true
-                document.getElementById('txt').value = ""
                 span.innerText = "✓"
                 span.style.fontSize = 'xxx-large'
+                document.getElementById('txt').value = ''
                 setTimeout(() => {
                     span.innerText = " "
                     span.style.fontSize = 'large'
