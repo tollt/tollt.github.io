@@ -31,8 +31,8 @@ $(txt).on("keydown", function (e) {
                 span.innerText = "✓"
                 span.style.fontSize = 'xxx-large'
                 document.getElementById('txt').value = ''
-                p.innerText = ''
                 setTimeout(() => {
+                    p.innerText = ' '
                     span.innerText = " "
                     span.style.fontSize = 'large'
                     p.hidden = false
