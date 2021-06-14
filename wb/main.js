@@ -31,11 +31,13 @@ $(txt).on("keydown", function (e) {
                 span.innerText = "✓"
                 span.style.fontSize = 'xxx-large'
                 document.getElementById('txt').value = ''
+                document.getElementById('txt').disabled = true
                 setTimeout(() => {
                     p.innerText = ' '
                     span.innerText = " "
                     span.style.fontSize = 'large'
                     p.hidden = false
+                    document.getElementById('txt').disabled = false
                 }, 2000)
                 break
             }
@@ -47,7 +49,7 @@ $(txt).on("keydown", function (e) {
                     span.innerText = " "
                     span.style.fontSize = 'large'
                     p.hidden = false
-                }, 2000)
+                }, 1000)
                 break
             }
           }
