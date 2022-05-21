@@ -1,1 +1,1 @@
-# some dude does stuff
+# some dude does stuff (occasionally)
