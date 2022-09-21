@@ -11,13 +11,21 @@
     <meta content="https://tollt.github.io/amogos.gif" property="og:image">
     <meta content="#FFB412" data-react-helmet="true" name="theme-color">
     <link rel="stylesheet" href="index.css">
-    <script type="text/javascript", href="index.js"></script>
     <title>Tellurate</title>
 </head>
 <body>
+    <script type="text/javascript">
+        window.onload = () => {
+        if (window.location.href.includes("?=s")){
+            document.getElementById("h1").innerText = "\u0074\u0111\u0101's Website"
+            document.getElementById("p1").innerText = hi, "i'm \u0106\u0111\u0101. i do coding stuff sometimes. i figure i should have a website by now, so here it is."
+            document.getElementsByTagName("title").innerText = "\u0074\u0111\u0101's Website"
+        }
+    };
+    </script>
     <div id="main">
-        <h1>Tellurate's Website</h1>
-        <p>hi, i'm tellurate. i do coding stuff sometimes. i figure i should have a website by now, so here it is.</p>
+        <h1 id="h1">Tellurate's Website</h1>
+        <p id="p1">hi, i'm tellurate. i do coding stuff sometimes. i figure i should have a website by now, so here it is.</p>
     </div>
     <div id="bottom">
         <p>link to old version (Warning: Bad) <a href="old.html">Click Here</a></p>
