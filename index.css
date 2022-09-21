@@ -1,0 +1,30 @@
+body {
+    background-color: #222;
+    color: whitesmoke; 
+    margin: 0;
+}
+p {
+    font-size: x-large; /* im blind asf */
+}
+#main {
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#bottom {
+    width: 100vw;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    height: 8vh;
+    overflow:hidden;
+}
+
+a, a:hover, a:visited, a:active{
+    text-decoration: none;
+    color: rgb(243, 255, 138);
+}
