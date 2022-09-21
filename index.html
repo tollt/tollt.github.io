@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="index.css">
     <title>Tellurate</title>
 </head>
-<body>
+<body hidden>
     <div id="main">
         <h1 id="h1">Tellurate's Website</h1>
         <p id="p1">hi, i'm tellurate. i do coding stuff sometimes. i figure i should have a website by now, so here it is.</p>
@@ -28,6 +28,10 @@
                 document.getElementById("p1").innerText = hi, "i'm \u006A\u006F\u0065. i do coding stuff sometimes. i figure i should have a website by now, so here it is."
                 document.getElementsByTagName("title").innerText = "\u004A\u006F\u0065's Website"
                 document.getElementById("bottom").remove()
+                document.body.hidden = false
+            }
+            else {
+                document.body.hidden = false
             }
         };
     </script>
