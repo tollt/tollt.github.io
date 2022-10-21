@@ -30,7 +30,7 @@
                 document.getElementById("bottom").remove()
                 document.body.hidden = false
             }
-            else {
+            else if (window.location.href.includes("?=h")) {
                 document.body.hidden = false
             }
         };
