@@ -1,0 +1,63 @@
+* {
+    user-select: none;
+}
+
+body {
+    background-color: #333;
+}
+
+#game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#game > * {
+    font-size: xx-large;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    background: #aaa;
+    width: 125px;
+    height: 191px;
+    margin: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.card:hover {
+    background: #444;
+}
+#reset {
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 30px;
+    background-color: #48B670;
+    color: #333;
+}
+
+img {
+    width: 125px;
+    height: 191px;
+    border-radius: 10px;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+.rotate {
+    rotate: 90deg;
+    height: 125px;
+    width: 191px;
+}
