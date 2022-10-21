@@ -34,7 +34,7 @@ window.addEventListener("load", function () {
             let back = this.document.createElement("img")
             let num = this.document.createElement("img")
             back.src = "images/card-back.png"
-            back.classList.add("rotate")
+            //back.classList.add("rotate")
             num.src = "images/" + images[nums[i*COLUMNS+j]]
             num.hidden = true
             div.appendChild(num)
