@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
+    color: #eee;
+}
+
+body {
+    background-color: #222;
+
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#textbox {
+    width: 600px;
+    height: 50px;
+    background-color: #000;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    vertical-align: top;
+    position: relative;
+    top: 9px;
+    text-align: center;
+    overflow: visible;
+    line-height: 60px; /* remember this, it makes it so the diacritics don't get cut off */
+}
+
+#textbox:focus-visible {
+    outline: none;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.fs {
+    font-size: 60px;
+    text-align: top;
+}
+
+.letter {
+    background-color: #222;
+    border: 1px solid #eee;
+    width: 40px;
+    height: 50px;
+}
+
+.letter.dark {
+    background-color: #000;
+}
+
+.desc {
+    background-color: #222;
+    border: 1px solid #eee;
+    height: 48px;
+    width: 78px;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: .7em;
+}
+
+.descx {
+    background-color: #222;
+    height: 48px;
+    width: 78px;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: .7em;
+    border: 1px solid #eee;
+}
+
+.sp {
+    font-size: .55em;
+}
+
+.sp2 {
+    font-size: .7em;
+}
+
+#aright {
+    left: 90%
+}
+
+#aleft {
+    left: 4%
+}
+
+.arrow {
+    position: absolute;
+    bottom: 35%;
+    background-color: rgb(0,0,0,0);
+    border: none;
+    font-size: 100px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.arrow:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.filled {
+    cursor: pointer;
+}
+
+#bottom1{
+    display: block;
+}
+#bottom2, #bottom3 {
+    display: none;
+}
+
+.dia {
+    background-color: #222;
+    border: 1px solid #eee;
+    width: 40px;
+    height: 50px;
+    cursor: pointer;
+}
