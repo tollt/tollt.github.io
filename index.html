@@ -32,8 +32,9 @@
             }
             else if (window.location.href.includes("?=h")) {
                 document.body.hidden = false
+                document.getElementsByTagName("title")[0].innerHTML = "Tellurate\'s Website"
             } else {
-                document.getElementByTagName("title").innerHTML = "uh no"
+                document.getElementsByTagName("title")[0].innerHTML = "uh no"
             }
         };
     </script>
