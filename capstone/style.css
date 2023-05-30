@@ -71,17 +71,19 @@ nav>ul>li:hover {
     justify-content: center;
 }
 
-#t1>img {
-    width: 100%;
-}
-
 h1 {
     font-size: 45px;
 }
-h1.c,h2.c,p.c,span.c {
+h1.c,h2.c,p.c,span.c, img.c {
     text-align: center;
 }
 #t5 {
 word-wrap: break-word;
 word-break: break-all;
+}
+.ic {
+    text-align: center;
+}
+img {
+    width: 100%;
 }
