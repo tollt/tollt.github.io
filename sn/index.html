@@ -8,76 +8,209 @@
     <!--j queer y-->
 </head>
 <body>
+    <label id="filelabel" for="file">Input file</label>
     <input type="file" name="file" id="file">
+    <br>
+    <label for="chars">Use ' and -</label>
+    <input type="checkbox" name="chars" id="chars">
+    <br>
+    <label for="min">min wpp</label>
     <input type="number" name="min" id="min" min="1" max="100" placeholder="min wpp..." value="1">
+    <br>
+    <label for="min">max wpp</label>
     <input type="number" name="max" id="max" min="1" max="100" placeholder="max wpp..." value="8">
-    <input type="number" name="minsize" id="minsize" min="2" max="30" placeholder="min promptsize..." value="2">
-    <input type="number" name="maxsize" id="maxsize" min="2" max="30" placeholder="max promptsize..." value="3">
+    <br>
+    <label for="min">min prompt size</label>
+    <input type="number" name="minsize" id="minsize" min="2" max="30" placeholder="min prompt size..." value="2">
+    <br>
+    <label for="min">max prompt size</label>
+    <input type="number" name="maxsize" id="maxsize" min="2" max="30" placeholder="max prompt size..." value="3">
+    <br>
+    <label>Sorting:</label><br>
+    <label>Prompt Length, Wpp, Alphabetical</label>
+    <input type="radio" name="sort" value="sort1" id="sort1">
+    <br>
+    <label>Wpp, Prompt Length, Alphabetical</label>
+    <input type="radio" name="sort" value="sort2" id="sort2">
+    <br>
+    <label>Wpp, Alphabetical</label>
+    <input type="radio" name="sort" value="sort3" id="sort3">
+    <br>
+    <label>Prompt Length, Alphabetical</label>
+    <input type="radio" name="sort" value="sort4" id="sort4">
+    <br>
+    <label>Alphabetical</label>
+    <input type="radio" name="sort" value="sort5" id="sort5">
+    <br>
+    <button id="vivi">Use vivi.txt</button>
     <button id="sub">Submit</button>
     <script>
+        let vivi = undefined
         $(document).ready(function()
         {
+            function sn(words)
+            {
+                words = words || vivi
+                let max = +$("#max").val()
+                let min = +$("#min").val()
+                let maxs = +$("#maxsize").val()
+                let mins = +$("#minsize").val()
+                let chars = !$("#chars").is(":checked")
+                let sorting = $("input[name=sort]:checked").val()
+                if (!words || !max || words.length < max || min > max || mins > maxs)
+                {
+                    return;
+                }
+
+                prompts = {}
+                justprompts = [];
+
+                for (let i = 0; i < words.length; i++)
+                {
+                    let word = words[i];
+
+                    let wprompts = []
+
+                    for (let j = mins; j <= maxs; j++)
+                    {
+                        for (let k = 0; k < (word.length-j)+1; k++)
+                        {
+                            let prompt = word.slice(k,k+j)
+
+                            if (wprompts.includes(prompt))
+                            {
+                                continue;
+                            } else {
+                                wprompts.push(prompt)
+                            }
+
+                            if (prompt in prompts)
+                            {
+                                prompts[prompt].push(word)
+                            } else {
+                                prompts[prompt] = [word];
+                                justprompts.push(prompt)
+                            }
+                        }
+                    }
+                }
+                let str = ""
+                let jps = undefined
+
+                if (sorting === "sort2") { //wpp p a
+                    jps = justprompts.sort(function(a,b){
+                        if (prompts[a].length != prompts[b].length)
+                        {
+                            return prompts[a].length > prompts[b].length
+                        }
+                        else if (a.length != b.length){
+                            return a.length > b.length
+                        } 
+                        else {
+                            return a > b
+                        }
+                    })
+                }
+                else if (sorting === "sort3") { //wpp p a
+                    jps = justprompts.sort(function(a,b){
+                        if (prompts[a].length != prompts[b].length)
+                        {
+                            return prompts[a].length > prompts[b].length
+                        }
+                        else {
+                            return a > b
+                        }
+                    })
+                }
+                else if (sorting === "sort4") { //a
+                    jps = justprompts.sort(function(a,b){
+                        return a > b
+                    })
+                }
+                else if (sorting === "sort5") { //p a
+                    jps = justprompts.sort(function(a,b){
+                    if (a.length != b.length){
+                        return a.length > b.length
+                    }
+                    else {
+                        return a > b
+                    }
+                    })
+                }
+                else { //p wpp a
+                    jps = justprompts.sort(function(a,b){
+                        if (a.length != b.length){
+                            return a.length > b.length
+                        } 
+                        else if (prompts[a].length != prompts[b].length)
+                        {
+                            return prompts[a].length > prompts[b].length
+                        }
+                        else {
+                            return a > b
+                        }
+                    })
+                }
+
+                console.log(jps.length, prompts[jps[1]].length)
+
+                for (let i = 0; i < jps.length; i++)
+                {
+                    if (prompts[jps[i]].length < min || prompts[jps[i]].length > max)
+                    {
+                        continue
+                    }
+                    if ((jps[i].search("'") != -1 || jps[i].search("-") != -1) && chars)
+                    {
+                        continue;
+                    }
+                    str += jps[i] + ", " + prompts[jps[i]].length + ", "
+
+                    for (let j=0; j <prompts[jps[i]].length; j++)
+                    {
+                        str += prompts[jps[i]][j] + " "
+                    }
+                    str += "\n"
+                }
+                console.log("hi")
+                var element = document.createElement("a");
+                element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(str));
+                element.setAttribute("download", "output.txt");
+
+                element.style.display = "none";
+                document.body.appendChild(element);
+
+                element.click();
+
+                document.body.removeChild(element);
+            }
+            
+            $("#vivi").on("click", function(){
+                fetch("/Vivi.txt")
+                .then((response) => {
+                    vivi = response.text().then(
+                        (erm) => {
+                            vivi = erm.toUpperCase().split(/\r?\n/)
+                            $("#file").hide()
+                            $("#filelabel").text("Using Vivi.txt")
+                        }
+                    )
+                })
+            })
             $("#sub").on("click", function()
             {
-                let file = $("#file").prop('files')[0];
+                let file = $("#file").prop("files")[0];
                 const reader = new FileReader()
-                reader.addEventListener('load', (e) => {
+                reader.addEventListener("load", (e) => {
                     let words = e.target.result.toUpperCase().split(/\r?\n/)
-                    let max = $("#max").val()
-                    let min = $("#min").val()
-                    let maxs = $("#maxsize").val()
-                    let mins = $("#minsize").val()
-                    if (!words || !max || words.length < max || min > max)
-                    {
-                        return;
-                    }
-                    prompts = {}
-                    for (let i = 0; i < words.length; i++)
-                    {
-                        let word = words[i];
-                        for (let j = mins; j <= maxs; j++)
-                        {
-                            for (let k = 0; k < word.length-j+1; k++)
-                            {
-                                let prompt = word.slice(k,k+j)
-                                if (prompt in prompts)
-                                {
-                                    prompts[prompt]++;
-                                } else {
-                                    prompts[prompt] = 1;
-                                }
-                            }
-                        }
-                    }
-                    let str = ""
-                    for (let prompt in prompts)
-                    {
-                        if (prompts[prompt] >= mins && prompts[prompt] <= maxs)
-                        {
-                            str += prompt + ", " + prompt.length + ", "
-                            for (let i=0; i++; i<words.length)
-                            {
-                                let word = words[i];
-                                if (word.find(prompt))
-                                {
-                                    str += word
-                                }
-                            }
-                            str += "\n"
-                        }
-                    }
-                    var element = document.createElement('a');
-                    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(str));
-                    element.setAttribute('download', "output.txt");
-
-                    element.style.display = 'none';
-                    document.body.appendChild(element);
-
-                    element.click();
-
-                    document.body.removeChild(element);
+                    sn(words)
                 })
-                reader.readAsText(file)
+                if (vivi != undefined) {
+                    sn(vivi)
+                } else
+                {
+                    reader.readAsText(file)
+                }
             })
         })
     </script>
