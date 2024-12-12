@@ -2,33 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNS</title>
-    <style>
-    .center {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-      }
-    .mainButton {
-        width: 200px;
-        height: 60px;
-        font-size: x-large;
-    }
-    </style>
+    <title>i love sns</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!--j queer y-->
 </head>
 <body>
-    <div class="center">
-        <form action="https://tollt.github.io/sn/english">
-            <input class="mainButton" type="submit" value="English s-ns" />
-        </form>
-        <form action="https://tollt.github.io/sn/spanish">
-            <input class="mainButton" type="submit" value="Spanish s-ns" />
-        </form>
-    </div>
+    <input type="file" name="file" id="file">
+    <input type="number" name="min" id="min" min="1" max="100" placeholder="min wpp..." value="1">
+    <input type="number" name="max" id="max" min="1" max="100" placeholder="max wpp..." value="8">
+    <input type="number" name="minsize" id="minsize" min="2" max="30" placeholder="min promptsize..." value="2">
+    <input type="number" name="maxsize" id="maxsize" min="2" max="30" placeholder="max promptsize..." value="3">
+    <button id="sub">Submit</button>
+    <script>
+        $(document).ready(function()
+        {
+            $("#sub").on("click", function()
+            {
+                let file = $("#file").files[0]
+                const reader = new FileReader()
+                reader.addEventListener('load', (e) => {
+                    let words = e.target.result.toUpperCase().split(/\r?\n/)
+                    let max = $("#max").val()
+                    let min = $("#min").val()
+                    let maxs = $("#maxsize").val()
+                    let mins = $("#minsize").val()
+                    if (!words || !max || words.length < max || min > max)
+                    {
+                        return;
+                    }
+                    prompts = {}
+                    for (let i = 0; i < words.length; i++)
+                    {
+                        let word = words[i];
+                        for (let j = mins; j <= maxs; j++)
+                        {
+                            for (let k = 0; k < word.length-j+1; k++)
+                            {
+                                let prompt = word.slice(k,k+j)
+                                if (prompt in prompts)
+                                {
+                                    prompts[prompt]++;
+                                } else {
+                                    prompts[prompt] = 1;
+                                }
+                            }
+                        }
+                    }
+                    let str = ""
+                    for (let prompt in prompts)
+                    {
+                        if (prompts[prompt] >= mins && prompts[prompt] <= maxs)
+                        {
+                            str += prompt + ", " + prompt.length + ", "
+                            for (let i=0; i++; i<words.length)
+                            {
+                                if (word.find(prompt))
+                                {
+                                    str += word
+                                }
+                            }
+                            str += "\n"
+                        }
+                    }
+                    var element = document.createElement('a');
+                    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(str));
+                    element.setAttribute('download', filename);
+
+                    element.style.display = 'none';
+                    document.body.appendChild(element);
+
+                    element.click();
+
+                    document.body.removeChild(element);
+                })
+                reader.readAsText(file)
+            })
+        })
+    </script>
 </body>
 </html>
