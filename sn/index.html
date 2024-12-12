@@ -186,7 +186,7 @@
             }
             
             $("#vivi").on("click", function(){
-                fetch("/Vivi.txt")
+                fetch("https://raw.githubusercontent.com/tollt/tollt.github.io/sn/Vivi.txt")
                 .then((response) => {
                     vivi = response.text().then(
                         (erm) => {
