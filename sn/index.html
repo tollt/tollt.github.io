@@ -19,7 +19,7 @@
         {
             $("#sub").on("click", function()
             {
-                let file = $("#file").files[0]
+                let file = $("#file").prop('files')[0];
                 const reader = new FileReader()
                 reader.addEventListener('load', (e) => {
                     let words = e.target.result.toUpperCase().split(/\r?\n/)
